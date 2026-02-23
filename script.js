@@ -32,3 +32,26 @@ async function loadConfessions() {
 }
 
 loadConfessions();
+
+async function submitConfession() {
+  const input = document.getElementById("confessionInput");
+  const content = input.value.trim();
+
+  if (!content) {
+    alert("Please write something.");
+    return;
+  }
+
+  const { error } = await supabase
+    .from("confessions")
+    .insert([{ content: content, status: "pending" }]);
+
+  if (error) {
+    console.error(error);
+    alert("Error submitting confession.");
+    return;
+  }
+
+  input.value = "";
+  alert("Confession submitted for review.");
+}
