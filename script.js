@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://zbbidcbmqelfdzmyujex.supabase.co";
-const SUPABASE_KEY = "YOUR_ANON_PUBLIC_KEY";
+const SUPABASE_KEY = "sb_publishable_88HCkBeBTMGM4FQ_BAIr6g_zO3toX8E";
 
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -56,3 +56,4 @@ async function submitConfession() {
 }
 
 loadConfessions();
+
