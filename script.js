@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://zbbidcbmqelfdzmyujex.supabase.co";
 const SUPABASE_KEY = "sb_publishable_88HCkBeBTMGM4FQ_BAIr6g_zO3toX8E";
 
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const client = window.supabase.createClient(https://zbbidcbmqelfdzmyujex.supabase.co , sb_publishable_88HCkBeBTMGM4FQ_BAIr6g_zO3toX8E);
 
 function toggleDark() {
   document.body.classList.toggle("dark");
@@ -56,5 +56,6 @@ async function submitConfession() {
 }
 
 loadConfessions();
+
 
 
