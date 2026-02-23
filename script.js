@@ -1,14 +1,16 @@
-const SUPABASE_URL = "https://zbbidcbmqelfdzmyujex.supabase.co";
-const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
+const { createClient } = supabase;
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_URL = "YOUR_PROJECT_URL";
+const SUPABASE_KEY = "YOUR_ANON_PUBLIC_KEY";
+
+const client = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
 
 async function loadConfessions() {
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from("confessions")
     .select("*")
     .order("created_at", { ascending: false });
@@ -19,22 +21,21 @@ async function loadConfessions() {
   }
 
   const container = document.getElementById("confessions");
+  if (!container) return;
+
   container.innerHTML = "";
 
   data.forEach(confession => {
     const div = document.createElement("div");
-    div.innerHTML = `
-      <p>${confession.content}</p>
-      <hr/>
-    `;
+    div.innerHTML = `<p>${confession.content}</p><hr/>`;
     container.appendChild(div);
   });
 }
 
-loadConfessions();
-
 async function submitConfession() {
   const input = document.getElementById("confessionInput");
+  if (!input) return;
+
   const content = input.value.trim();
 
   if (!content) {
@@ -42,7 +43,7 @@ async function submitConfession() {
     return;
   }
 
-  const { error } = await supabase
+  const { error } = await client
     .from("confessions")
     .insert([{ content: content, status: "pending" }]);
 
@@ -55,3 +56,5 @@ async function submitConfession() {
   input.value = "";
   alert("Confession submitted for review.");
 }
+
+loadConfessions();
