@@ -55,7 +55,8 @@ async function submitConfession() {
   alert("Confession submitted for review.");
 }
 
-loadConfessions();
+
+
 
 
 
